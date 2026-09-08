@@ -25,25 +25,33 @@ Skapat med [app.diagram](https://app.diagrams.net)
 Databasen innehåller tabellerna:
 
 ### `users`
-
-- ex. produkt_id (PK, FK)
+- username: String
+- password: String
+- is_admin: Boolean
+- created_at: Date
 
 
 ### `books`
+- title: String
+- description: String
+- author: String
+- genres: Array
+- image: String
+- published_year: Number
 
-- ??
 
 ### `reviews`
-
-- ??
-- ??
+- name: String
+- content: String
+- rating: Number (1-5)
+- created_at: Date
+- review_id: ObjectId
 
 ### Relation
 
 - En produkt kan tillhöra **flera kategorier**
 - En kategori kan ha **flera produkter**
 - Detta hanteras via en many-to-many-tabell: `product_category`
-
 
 
 ## Installation och körning
