@@ -83,11 +83,11 @@ app.use('/api/greetings', greetingRouter)
 
 
 // Connect To DB
-// import mongoose from 'mongoose';
-// mongoose.connect(process.env.MONGODB_URL || "");
+import mongoose from "mongoose"
+mongoose.connect(process.env.MONGODB_URL || "");
 
 // Start the express server
-const PORT = 3000
+const PORT = 3050
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`)
 })
