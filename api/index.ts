@@ -77,9 +77,10 @@ app.use(express.static(path.join(process.cwd(), 'public')));
 // Routes
 import authRouter from '../src/routes/auth'
 import greetingRouter from '../src/routes/greetings'
+import bookRouter from '../src/routes/bookRoutes' //booksRoutes
 app.use('/api/auth', authRouter)
 app.use('/api/greetings', greetingRouter)
-
+app.use('/api/books', bookRouter)
 
 
 // Connect To DB
