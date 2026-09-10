@@ -1,6 +1,7 @@
 import { Request, Response } from "express"
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
+import User from "../models/user"
 
 
 export const login = async (req: Request, res: Response) => {
@@ -52,6 +53,14 @@ export const register = async (req: Request, res: Response) => {
     }
 
     try {
+        const existingUser = await User.findOne({ username });
+
+        if (existingUser) {
+            res.status(400).json({ message: "Username already exists" });
+            return;
+        }
+
+    try {
         const hashedPassword = await bcrypt.hash(password, 10)
 
         // The hashedPassword is the value that should be saved in the DB, not the plain password. For security reasons
@@ -66,4 +75,5 @@ export const register = async (req: Request, res: Response) => {
 export const logout = async (req: Request, res: Response) => {
     res.clearCookie('accessToken')
     res.json({message: "You are logged out"})
+}
 }
