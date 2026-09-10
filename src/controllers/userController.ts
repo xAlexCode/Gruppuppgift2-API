@@ -4,40 +4,65 @@ import bcrypt from "bcrypt";
 
 
 
-export const createUser = async (req: Request, res: Response): Promise<void> => {
+
+export const register = async (req: Request, res: Response) => {
+
+    const { username, password } = req.body
+
+
+    if (username === undefined || password === undefined) {
+
+        res.status(400).json({
+            message: 'username and password are required'
+        })
+
+        return
+    }
 
     try {
 
-        const { username, password, is_admin } = req.body;
 
-        const hashedPassword = await bcrypt.hash(password, 10);
+        const existingUser = await User.findOne({ username })
+
+        if (existingUser) {
+
+            res.status(409).json({
+                message: 'Username is already taken'
+            })
+
+            return
+        }
+
+
+        const hashedPassword = await bcrypt.hash(password, 10)
+
 
         const user = await User.create({
             username,
             password: hashedPassword,
-            is_admin
-        });
+            is_admin: false
+        })
 
-        res.status(201).json(user);
 
-    } catch (error: unknown) {
+        res.status(201).json({
+            message: 'You are registered',
+            username: user.name,
+            is_admin: user.is_admin,
+            created_at: user.created_at
+        })
 
-        if (error instanceof Error && "code" in error && error.code === 11000) {
-
-            res.status(409).json({
-                message: "Username is already taken"
-            });
-
-            return;
-        }
+    } catch (error) {
+        
+        console.log(error)
 
         res.status(500).json({
-            message: error instanceof Error ? error.message : "An unknown error occurred",
-        });
+            message: 'Something went wrong'
+        })
 
     }
+}
 
-};
+
 
 
 
@@ -53,7 +78,7 @@ export const getUsers = async (req: Request, res: Response): Promise<void> => {
 };
 
 export const getUserById = async (req: Request, res: Response): Promise<void> => {
-    
+
 
 };
 
