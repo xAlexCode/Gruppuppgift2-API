@@ -1,11 +1,15 @@
 # Gruppuppgift2 (kom på namn)
 
-Detta är en uppgift att skapa .... 
+Detta grupprojekt är ett fullstack‑system byggt med **Express + TypeScript + MongoDB**, där vi skapar ett Book API med tre tabeller: **users**, **books** och **reviews**, samt en klient med både öppna och lösenordsskyddade sidor.
 
 ## Innehåll
 
-- ER-diagram
-- OSV
+- Tekniker
+- Flow
+- Databasstruktur
+- Installation & körning
+- API-endpoints
+- Klient sidor
 
 ## Tekniker
 
@@ -13,12 +17,12 @@ Detta är en uppgift att skapa ....
 - TypeScript — Själva koden
 - Node.js — Runtime‑miljö för att köra Express‑servern
 - MongoDB - Dataserver med cluster
-- Insomnia — API‑klient för att testa endpoints (GET, POST, PATCH, DELETE)
+- Insomnia — API‑klient för att testa endpoints
+- Bootstrap - UI-ramverk för klienten
 
-## Er diagram
+## Flow
+![Flow](flow.jpg) 
 
-Skapat med [app.diagram](https://app.diagrams.net)
-![ER-diagram](erdiagram.jpg) Lägg in senare
 
 ## Databas
 
@@ -26,8 +30,8 @@ Databasen innehåller tabellerna:
 
 ### `users`
 - username: String
-- password: String
-- is_admin: Boolean
+- password: String (bcrypt‑hashad)  
+- is_admin: Boolean 
 - created_at: Date
 
 
@@ -49,14 +53,13 @@ Databasen innehåller tabellerna:
 
 ### Relation
 
-- En produkt kan tillhöra **flera kategorier**
-- En kategori kan ha **flera produkter**
-- Detta hanteras via en many-to-many-tabell: `product_category`
-
+- En **book** kan ha flera **reviews**  
+- En **review** tillhör exakt en **book**  
+- Kopplingen sker via `review_id` (book_id)
 
 ## Installation och körning
 
-1. Installera dependencies:
+1. Klona projektet och installera dependencies:
 
 ```bash
    npm install
@@ -66,16 +69,16 @@ Databasen innehåller tabellerna:
 3. Skapa en .env fil med följande:
 
 ```env
-DB_HOST=
-DB_USER=
-DB_PASSWORD=
-DB_NAME=
+MONGODB_URL =
+JWT_SECRET = 
+NODE_ENV = 
+
 ```
 
 5. Eventuellt ändra till annan port i `index`om det behövs:
 
 ```typescript
-const PORT = 3050;
+const PORT = 3000;
 ```
 
 6. Starta dev-server:
@@ -95,14 +98,40 @@ Nedan följer alla endpoints för Users och Böcker.
 | GET    | /categories     | Hämta alla kategorier |
 
 
+### Autentisering
+
+| Metod  | Endpoint        | Beskrivning           |
+| ------ | --------------- | --------------------- |
+| POST   | /auth           | Hämta alla kategorier |
+
 ### Books
 
-| Metod  | Endpoint      | Beskrivning          |
-| ------ | ------------- | -------------------- |
-| GET    | /products     | Hämta alla produkter |
+| Metod  | Endpoint       | Beskrivning          |
+| ------ | -------------  | -------------------- |
+| GET    | /api/books     | Hämta alla böcker    |
+| GET    | /api/books/:id | Hämta bok + reviews  |
+| POST   | /api/books     | Skapa bok            |
+| PATCH  | /api/books/:id | Uppdatera bok        |
+| DELETE | /api/books/:id | Radera bok + reviews |
 
 ### Reviews
 
 | Metod  | Endpoint      | Beskrivning          |
 | ------ | ------------- | -------------------- |
 | GET    | /products     | Hämta alla produkter |
+
+
+## Klient sidor
+
+### Öppna sidor
+- index.html - Listar alla böcker
+- book.html - Visa specifik bok + review
+- Formulär för att skapa review
+
+### Auth sidor
+- 
+-
+
+### Skyddad sida
+- 
+
