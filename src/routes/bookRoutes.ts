@@ -6,13 +6,14 @@ import {
     updateBook,
     deleteBook
 } from "../controllers/bookController"
+import { verifyToken } from "../middleware/verifyToken";
 
 const router = express.Router();
 
 router.get("/", fetchAllBooks);
 router.get("/:id", fetchbook);
-router.post("/", createBook);
-router.patch("/:id", updateBook);
-router.delete("/:id", deleteBook);
+router.post("/", verifyToken, createBook);
+router.patch("/:id", verifyToken, updateBook);
+router.delete("/:id", verifyToken, deleteBook);
 
 export default router;
