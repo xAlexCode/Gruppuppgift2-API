@@ -3,6 +3,7 @@ import express from 'express';
 import cors from 'cors'
 import cookieParser from 'cookie-parser';
 import path from 'path';
+import userRouter from '../src/routes/user'
 
 
 const app = express();
@@ -79,6 +80,7 @@ import authRouter from '../src/routes/auth'
 import greetingRouter from '../src/routes/greetings'
 app.use('/api/auth', authRouter)
 app.use('/api/greetings', greetingRouter)
+app.use('/api/users', userRouter)
 
 
 
