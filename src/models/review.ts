@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
+const { Schema } = mongoose
 
-const reviewSchema = new mongoose.Schema({ 
+const reviewSchema = new Schema({
     name: {
         type: String,
         required: true
@@ -19,8 +20,9 @@ const reviewSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    review_id: {
-        type: mongoose.Schema.Types.ObjectId,
+    book_id: {
+        type: Schema.Types.ObjectId,
+        ref: 'Book',
         required: true
     }
 })
