@@ -3,7 +3,7 @@ import Book from "../models/book";
 
 export const fetchAllBooks = async (req: Request, res: Response) => {
     try {
-        const books = await Book.find();
+        const books = await Book.find().populate('reviews');
         res.json(books);
     } catch (error) {
         res.status(500).json({ message: "Error fetching books" });
@@ -13,7 +13,7 @@ export const fetchAllBooks = async (req: Request, res: Response) => {
 export const fetchbook = async (req: Request, res: Response) => {
     try {
         const bookId = req.params.id;
-        const specificBook = await Book.findById(bookId);
+        const specificBook = await Book.findById(bookId).populate('reviews');
         if (!specificBook) {
             res.status(404).json({ message: "Book not found" })
             return;
@@ -89,6 +89,7 @@ export const deleteBook = async (req: Request, res: Response) => {
             res.status(404).json({ message: "Book not found" });
             return;
         }
+
         res.json({ message: "Book deleted successfully", data: deletedBook });
     } catch (error) {
         res.status(500).json({ message: "Error deleting book" });
