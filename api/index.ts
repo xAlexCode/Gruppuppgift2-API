@@ -3,6 +3,7 @@ import express from 'express';
 import cors from 'cors'
 import cookieParser from 'cookie-parser';
 import path from 'path';
+import reviewRouter from '../src/routes/reviewRoutes'
 
 
 const app = express();
@@ -79,7 +80,7 @@ import authRouter from '../src/routes/auth'
 import greetingRouter from '../src/routes/greetings'
 app.use('/api/auth', authRouter)
 app.use('/api/greetings', greetingRouter)
-
+app.use('/api/reviews', reviewRouter)
 
 
 // Connect To DB
@@ -91,6 +92,5 @@ const PORT = 3000
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`)
 })
-
 
 
