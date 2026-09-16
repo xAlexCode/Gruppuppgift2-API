@@ -53,14 +53,14 @@ export const createBook = async (req: Request, res: Response) => {
 };
 
 export const updateBook = async (req: Request, res: Response) => {
-    const {title, description, author, genres, images, published_year} = req.body;
+    const {title, description, author, genres, image, published_year} = req.body;
 
     if (
         title === undefined && 
         description === undefined &&
         author === undefined && 
         genres === undefined && 
-        images === undefined &&
+        image === undefined &&
         published_year === undefined) {
             res.status(400).json({ message: "At least one field must be provided for update" })
             return;
