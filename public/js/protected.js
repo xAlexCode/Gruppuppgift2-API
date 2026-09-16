@@ -48,7 +48,19 @@ async function fetchUsers() {
         const users = await response.json();
 
         if (response.ok) {
-            console.log(users);
+            const tableBody = document.getElementById("users-table-body");
+
+    users.forEach(function (user) {
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+            <td>${user.username}</td>
+            <td>${user.is_admin}</td>
+            <td>${user.created_at}</td>
+        `;
+
+        tableBody.appendChild(row);
+        });
         }
 
     } catch (error) {
