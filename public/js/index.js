@@ -1,5 +1,10 @@
 const API_URL_BOOKS = "http://localhost:3000/api/books"; // Hämta alla böcker
 
+document.getElementById("panelBtn").addEventListener("click", function(event) {
+    event.preventDefault();
+    window.location.href = "loggedin.html";
+});
+
 async function loadBooks() {
   try {
     const res = await fetch(API_URL_BOOKS);
@@ -18,7 +23,7 @@ async function loadBooks() {
                 <h5 class="card-title">${book.title}</h5>
                 <p class="card-text">
                 <strong>Författare:</strong> ${book.author}<br>
-                <strong>Genres:</strong> ${book.genres.join(", ")}<br>
+                <strong>Genres:</strong> ${book.genres.join(", ")}<br> 
                 <strong>År:</strong> ${book.published_year}
                 </p>
                 <a href="book.html?id=${book._id}" class="btn btn-primary">Läs mer</a>
@@ -29,7 +34,7 @@ async function loadBooks() {
       `;
       container.innerHTML += card;
     });
-
+    //minnesanteckning, join - Sätt ihop arrayen till text igen motsatt till split i protected.js
   } catch (error) {
     console.error("Kunde inte ladda böcker:", error);
   }
