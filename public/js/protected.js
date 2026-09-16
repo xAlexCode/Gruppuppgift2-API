@@ -29,6 +29,35 @@ async function fetchGreeting() {
 }
 fetchGreeting();
 
+async function fetchUsers() {
+    try {
+        const response = await fetch(API_URL + "/users", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            credentials: "include"
+        });
+
+        if (response.status === 401 || response.status === 403) {
+            window.location.href =
+                "login.html?message=You must be logged in to view this page";
+            return;
+        }
+
+        const users = await response.json();
+
+        if (response.ok) {
+            console.log(users);
+        }
+
+    } catch (error) {
+        console.error("Error:", error);
+    }
+}
+
+fetchUsers();
+
 
 // 2. Create an addEventlistener for the logout button on click. The buttons ID is "#logout-btn"
 document.getElementById("logout-btn").addEventListener("click", function(event) {

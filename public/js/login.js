@@ -1,10 +1,13 @@
 // 1. Create an addEventlistener for the login button on click. The buttons ID is "#login-btn"
-document.getElementById("login-btn").addEventListener("click", function(event) {
+document.getElementById("login-form").addEventListener("submit", function(event) {
     event.preventDefault();
     // 2. SHould make a POST request to API_URL + "/auth/login", 
     // with a body of {username: "username", password: "password"}. login credentials should be hardcoded.  
     // And include "credentials: "include"
 
+
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
 
     // 3. Use async/await and try/catch to handle the response and any errors that may occur. If the response is successful, console log the data returned from the server.
     async function login() {
@@ -15,8 +18,8 @@ document.getElementById("login-btn").addEventListener("click", function(event) {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    username: "admin",
-                    password: "123"
+                    username: username,
+                    password: password
                 }),
                 credentials: "include"
             });
@@ -32,6 +35,9 @@ document.getElementById("login-btn").addEventListener("click", function(event) {
             console.log(data);
         } catch (error) {
             console.error("Error:", error);
+
+            document.getElementById("login-message").className = "alert alert-danger";
+            document.getElementById("login-message").innerHTML = "An error occurred. Please try again.";
         }
     }
     login();
