@@ -29,6 +29,47 @@ async function fetchGreeting() {
 }
 fetchGreeting();
 
+async function fetchUsers() {
+    try {
+        const response = await fetch(API_URL + "/users", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            credentials: "include"
+        });
+
+        if (response.status === 401 || response.status === 403) {
+            window.location.href =
+                "login.html?message=You must be logged in to view this page";
+            return;
+        }
+
+        const users = await response.json();
+
+        if (response.ok) {
+            const tableBody = document.getElementById("users-table-body");
+
+    users.forEach(function (user) {
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+            <td>${user.username}</td>
+            <td>${user.is_admin}</td>
+            <td>${user.created_at}</td>
+        `;
+
+        tableBody.appendChild(row);
+        });
+        }
+
+    } catch (error) {
+        console.error("Error:", error);
+    }
+}
+
+fetchUsers();
+
 
 // 2. Create an addEventlistener for the logout button on click. The buttons ID is "#logout-btn"
 document.getElementById("logout-btn").addEventListener("click", function(event) {
