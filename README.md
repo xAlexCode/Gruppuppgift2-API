@@ -2,7 +2,7 @@
 
 Detta grupprojekt är ett fullstack‑system byggt med **Express + TypeScript + MongoDB**, där vi skapar ett Book API med tre tabeller: **users**, **books** och **reviews**, samt en klient med både öppna och lösenordsskyddade sidor.
 
-![Bokradar](bokradar.jpg) 
+![Bokradar](bokradar.jpg)
 
 ## Innehåll
 
@@ -23,21 +23,22 @@ Detta grupprojekt är ett fullstack‑system byggt med **Express + TypeScript + 
 - Bootstrap - UI-ramverk för klienten
 
 ## Flöde
-![Flow](flow.jpg) 
 
+![Flow](flow.jpg)
 
 ## Databas
 
 Databasen innehåller tabellerna:
 
 ### `users`
+
 - username: String
-- password: String (bcrypt‑hashad)  
-- is_admin: Boolean 
+- password: String (bcrypt‑hashad)
+- is_admin: Boolean
 - created_at: Date
 
-
 ### `books`
+
 - title: String
 - description: String
 - author: String
@@ -45,8 +46,8 @@ Databasen innehåller tabellerna:
 - image: String
 - published_year: Number
 
-
 ### `reviews`
+
 - name: String
 - content: String
 - rating: Number (1-5)
@@ -55,8 +56,8 @@ Databasen innehåller tabellerna:
 
 ### Relation
 
-- En **book** kan ha flera **reviews**  
-- En **review** tillhör exakt en **book**  
+- En **book** kan ha flera **reviews**
+- En **review** tillhör exakt en **book**
 - Kopplingen sker via `book_id` i recensionen, som refererar till bokens `_id`.
 
 ## Installation och körning
@@ -67,13 +68,12 @@ Databasen innehåller tabellerna:
    npm install
 ```
 
-
 3. Skapa en .env fil med följande:
 
 ```env
 MONGODB_URL =
-JWT_SECRET = 
-NODE_ENV = 
+JWT_SECRET =
+NODE_ENV =
 
 ```
 
@@ -95,21 +95,24 @@ Nedan följer alla endpoints för Users och Böcker.
 
 ### Users
 
-| Metod  | Endpoint        | Beskrivning           |
-| ------ | --------------- | --------------------- |
-| GET    | /categories     | Hämta alla kategorier |
-
+| Metod  | Endpoint       | Beskrivning         |
+| ------ | -------------- | ------------------- |
+| GET    | /api/users     | Hämta alla users    |
+| GET    | /api/users/:id | Hämta enskild user  |
+| POST   | /api/users     | Skapa användare     |
+| PATCH  | /api/users/:id | Uppdatera användare |
+| DELETE | /api/users/:id | Radera användare    |
 
 ### Autentisering
 
-| Metod  | Endpoint        | Beskrivning           |
-| ------ | --------------- | --------------------- |
-| POST   | /auth           | Hämta alla kategorier |
+| Metod | Endpoint | Beskrivning           |
+| ----- | -------- | --------------------- |
+| POST  | /auth    | Hämta alla kategorier |
 
 ### Books
 
 | Metod  | Endpoint       | Beskrivning          |
-| ------ | -------------  | -------------------- |
+| ------ | -------------- | -------------------- |
 | GET    | /api/books     | Hämta alla böcker    |
 | GET    | /api/books/:id | Hämta bok + reviews  |
 | POST   | /api/books     | Skapa bok            |
@@ -125,8 +128,6 @@ Nedan följer alla endpoints för Users och Böcker.
 | POST   | /api/reviews     | Skapa en review         |
 | PATCH  | /api/reviews/:id | Uppdatera en review     |
 | DELETE | /api/reviews/:id | Radera en review        |
-
-
 
 ## Klient sidor
 
@@ -150,8 +151,10 @@ Tillhörande JavaScript:
 - `js/review.js` visar recensioner och hanterar reviewformuläret.
 
 ### Auth sidor
-- 
+
+-
 -
 
 ### Skyddad sida
-- 
+
+-
