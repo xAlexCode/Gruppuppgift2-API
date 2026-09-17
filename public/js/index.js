@@ -1,10 +1,5 @@
 const API_URL_BOOKS = "http://localhost:3000/api/books"; // Hämta alla böcker
 
-document.getElementById("panelBtn").addEventListener("click", function(event) {
-    event.preventDefault();
-    window.location.href = "loggedin.html";
-});
-
 async function loadBooks() {
   try {
     const res = await fetch(API_URL_BOOKS);
