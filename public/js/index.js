@@ -18,7 +18,7 @@ async function loadBooks() {
                 <h5 class="card-title">${book.title}</h5>
                 <p class="card-text">
                 <strong>Författare:</strong> ${book.author}<br>
-                <strong>Genres:</strong> ${book.genres.join(", ")}<br>
+                <strong>Genres:</strong> ${book.genres.join(", ")}<br> 
                 <strong>År:</strong> ${book.published_year}
                 </p>
                 <a href="book.html?id=${book._id}" class="btn btn-primary">Läs mer</a>
@@ -29,7 +29,7 @@ async function loadBooks() {
       `;
       container.innerHTML += card;
     });
-
+    //minnesanteckning, join sätter ihop arrayen till text igen vilket är motsatt till split i loggedin.js
   } catch (error) {
     console.error("Kunde inte ladda böcker:", error);
   }
