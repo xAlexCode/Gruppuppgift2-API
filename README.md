@@ -1,11 +1,13 @@
-# Gruppuppgift2 (kom på namn)
+# Bokradar
 
 Detta grupprojekt är ett fullstack‑system byggt med **Express + TypeScript + MongoDB**, där vi skapar ett Book API med tre tabeller: **users**, **books** och **reviews**, samt en klient med både öppna och lösenordsskyddade sidor.
+
+![Bokradar](bokradar.jpg) 
 
 ## Innehåll
 
 - Tekniker
-- Flow
+- Flöde
 - Databasstruktur
 - Installation & körning
 - API-endpoints
@@ -20,7 +22,7 @@ Detta grupprojekt är ett fullstack‑system byggt med **Express + TypeScript + 
 - Insomnia — API‑klient för att testa endpoints
 - Bootstrap - UI-ramverk för klienten
 
-## Flow
+## Flöde
 ![Flow](flow.jpg) 
 
 
