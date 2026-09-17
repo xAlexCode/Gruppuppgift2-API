@@ -116,22 +116,36 @@ Nedan följer alla endpoints för Users och Böcker.
 
 ### Reviews
 
-| Metod  | Endpoint         | Beskrivning             | Token krävs |
-| ------ | ---------------- | ----------------------- | ----------- |
-| GET    | /api/reviews     | Hämta alla reviews      | Nej         |
-| GET    | /api/reviews/:id | Hämta en enskild review | Nej         |
-| POST   | /api/reviews     | Skapa en review         | Nej         |
-| PATCH  | /api/reviews/:id | Uppdatera en review     | Ja          |
-| DELETE | /api/reviews/:id | Radera en review        | Ja          |
+| Metod  | Endpoint         | Beskrivning             |
+| ------ | ---------------- | ----------------------- |
+| GET    | /api/reviews     | Hämta alla reviews      |
+| GET    | /api/reviews/:id | Hämta en enskild review |
+| POST   | /api/reviews     | Skapa en review         |
+| PATCH  | /api/reviews/:id | Uppdatera en review     |
+| DELETE | /api/reviews/:id | Radera en review        |
 
 
 
 ## Klient sidor
 
 ### Öppna sidor
+
 - index.html - Listar alla böcker
-- book.html - Visa specifik bok + review
-- Formulär för att skapa review
+
+#### Boksida – book.html
+
+- Visar vald boks bild, titel, författare, publiceringsår, genrer och beskrivning.
+- Läser bokens ID från adressen, exempelvis `book.html?id=...`.
+- Har en tillbakalänk till boklistan.
+- Visar bokens recensioner med namn, text, betyg och datum.
+- Har ett formulär för att skapa en recension med namn, text och betyg 1–5.
+- Recensioner kan skapas utan inloggning.
+- Hämtar boken och recensionerna igen efter att en ny recension sparats.
+
+Tillhörande JavaScript:
+
+- `js/book.js` hämtar och visar bokens uppgifter.
+- `js/review.js` visar recensioner och hanterar reviewformuläret.
 
 ### Auth sidor
 - 
