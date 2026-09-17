@@ -1,4 +1,4 @@
-tisdag 16/9
+tisdag 15/9
 
 Närvarande:
 Markus, Alexandra & Maria
