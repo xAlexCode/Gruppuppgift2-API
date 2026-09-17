@@ -49,13 +49,13 @@ Databasen innehåller tabellerna:
 - content: String
 - rating: Number (1-5)
 - created_at: Date
-- review_id: ObjectId
+- book_id: ObjectId
 
 ### Relation
 
 - En **book** kan ha flera **reviews**  
 - En **review** tillhör exakt en **book**  
-- Kopplingen sker via `review_id` (book_id)
+- Kopplingen sker via `book_id` i recensionen, som refererar till bokens `_id`.
 
 ## Installation och körning
 
@@ -116,9 +116,14 @@ Nedan följer alla endpoints för Users och Böcker.
 
 ### Reviews
 
-| Metod  | Endpoint      | Beskrivning          |
-| ------ | ------------- | -------------------- |
-| GET    | /products     | Hämta alla produkter |
+| Metod  | Endpoint         | Beskrivning             | Token krävs |
+| ------ | ---------------- | ----------------------- | ----------- |
+| GET    | /api/reviews     | Hämta alla reviews      | Nej         |
+| GET    | /api/reviews/:id | Hämta en enskild review | Nej         |
+| POST   | /api/reviews     | Skapa en review         | Nej         |
+| PATCH  | /api/reviews/:id | Uppdatera en review     | Ja          |
+| DELETE | /api/reviews/:id | Radera en review        | Ja          |
+
 
 
 ## Klient sidor
@@ -134,4 +139,3 @@ Nedan följer alla endpoints för Users och Böcker.
 
 ### Skyddad sida
 - 
-
