@@ -1,4 +1,5 @@
 const API_URL_BOOKS = "http://localhost:3000/api/books";
+const API_URL = "http://localhost:3000/api";
 
 // Ladda böcker i tabellen
 async function loadBooksTable() {
@@ -66,7 +67,7 @@ async function fetchUsers() {
         const users = await response.json();
 
         if (response.ok) {
-            const tableBody = document.getElementById("users-table-body");
+            const tableBody = document.getElementById("usersTable");
 
     users.forEach(function (user) {
         const row = document.createElement("tr");
