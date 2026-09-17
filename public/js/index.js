@@ -34,7 +34,7 @@ async function loadBooks() {
       `;
       container.innerHTML += card;
     });
-    //minnesanteckning, join - Sätt ihop arrayen till text igen motsatt till split i protected.js
+    //minnesanteckning, join sätter ihop arrayen till text igen vilket är motsatt till split i loggedin.js
   } catch (error) {
     console.error("Kunde inte ladda böcker:", error);
   }
