@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import Book from "../models/book";
+import review from "../models/review";
 
 export const fetchAllBooks = async (req: Request, res: Response) => {
     try {
@@ -81,17 +82,23 @@ export const updateBook = async (req: Request, res: Response) => {
 };
 
 export const deleteBook = async (req: Request, res: Response) => {
-    try {
-        const bookId = req.params.id;
-        const deletedBook = await Book.findByIdAndDelete(bookId);
+  try {
+    const bookId = req.params.id;
+    const deletedBook = await Book.findByIdAndDelete(bookId);
 
-        if (!deletedBook) {
-            res.status(404).json({ message: "Book not found" });
-            return;
-        }
-
-        res.json({ message: "Book deleted successfully", data: deletedBook });
-    } catch (error) {
-        res.status(500).json({ message: "Error deleting book" });
+    if (!deletedBook) {
+      res.status(404).json({ message: "Book not found" });
+      return;
     }
+
+    // Radera alla reviews som hör till boken
+    await review.deleteMany({ book_id: bookId });
+
+    res.json({
+      message: "Book and its reviews deleted successfully",
+      data: deletedBook
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Error deleting book" });
+  }
 };
