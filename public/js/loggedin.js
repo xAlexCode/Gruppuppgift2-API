@@ -28,6 +28,7 @@ document.getElementById("addBookForm").addEventListener("submit", async (event) 
 
   const newBook = {
     title: document.getElementById("titleInput").value,
+    description: document.getElementById("descriptionInput").value,
     author: document.getElementById("authorInput").value,
     genres: document.getElementById("genresInput").value.split(",").map(genre => genre.trim()), // Hämtar text från inputfältet,gör om texten till en array och tar bort mellanslag
     published_year: document.getElementById("yearInput").value,
