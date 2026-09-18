@@ -3,6 +3,8 @@ import express from 'express';
 import cors from 'cors'
 import cookieParser from 'cookie-parser';
 import path from 'path';
+import reviewRouter from '../src/routes/reviewRoutes'
+import userRouter from '../src/routes/user'
 
 
 const app = express();
@@ -77,20 +79,26 @@ app.use(express.static(path.join(process.cwd(), 'public')));
 // Routes
 import authRouter from '../src/routes/auth'
 import greetingRouter from '../src/routes/greetings'
+import bookRouter from '../src/routes/bookRoutes' //booksRoutes
 app.use('/api/auth', authRouter)
 app.use('/api/greetings', greetingRouter)
+app.use('/api/books', bookRouter)
+app.use('/api/reviews', reviewRouter)
+app.use('/api/users', userRouter)
+
 
 
 
 // Connect To DB
-import mongoose from 'mongoose';
+import mongoose from "mongoose"
 mongoose.connect(process.env.MONGODB_URL || "");
 
 // Start the express server
-const PORT = 3000
-app.listen(PORT, () => {
-  console.log(`Server is running at http://localhost:${PORT}`)
-})
+if (!process.env.VERCEL) {
+  const PORT = 3000;
+  app.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}`);
+  });
+}
 
-
-
+export default app;
