@@ -1,5 +1,5 @@
-const API_URL_BOOKS = "http://localhost:3000/api/books";
-const API_URL = "http://localhost:3000/api";
+const API_URL_BOOKS = "/api/books";
+const API_URL = "/api";
 
 // Ladda böcker i tabellen
 async function loadBooksTable() {
