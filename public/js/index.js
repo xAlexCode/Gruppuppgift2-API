@@ -1,4 +1,4 @@
-const API_URL_BOOKS = "http://localhost:3000/api/books"; // Hämta alla böcker
+const API_URL_BOOKS = "/api/books"; // Hämta alla böcker
 
 async function loadBooks() {
   try {
